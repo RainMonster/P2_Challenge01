@@ -1,0 +1,18 @@
+<h1>Update a task!</h1>
+
+<% if @task %>
+  <form action="/task/<%= @task.id %>" method="post">
+    <input type="hidden" name="_method" value="put">
+    <input type="text" name="task[title]" value="<%= @task.title %>"><br>
+    <textarea name="task[content]" value="content"><%= @task.content %> </textarea><br>
+    <input type="checkbox" name="task[complete]" <%= "checked" if @task.complete? %>> complete?
+    <input type="submit">
+  </form>
+  <form action="/task/<%= @task.id %>/confirm_delete" method="get">
+    <input type="submit" value="Delete" data-confirm="Delete task?"/>
+  </form>
+<% else %>
+  <p>Task not found.</p>
+<% end %>
+
+<!-- <p><a href="/delete/<%= @task.id %>">Delete</a></p> -->
